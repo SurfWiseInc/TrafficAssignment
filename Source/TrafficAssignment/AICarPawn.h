@@ -30,23 +30,26 @@ public:
 
 	UPROPERTY()
 	FOnDespawnCarSignature OnDespawnCar;
-
-	//Pool
+	
+	//
+	//	Pool Functionality
+	//
 	void SetActive(bool isActive);
 	void SetPoolIndex(int32 poolIndex);
 	bool IsActive();
 	int32 GetPoolIndex();
-
-
 private:
 
 	bool bIsActive;
 	int32 PoolIndex;
 
-	UPROPERTY(EditAnywhere)
+	//
+	//	Control
+	//
+	UPROPERTY(VisibleAnywhere, Category = "AIController")
 		float ThrottleValue;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = "AIController")
 		float BrakeValue;
 
 	UPROPERTY()
@@ -58,16 +61,15 @@ private:
 	UFUNCTION()
 		void ScanForObstacles();
 
-public:
-	UFUNCTION()
-		void DespawnAICar(AAICarPawn* CarToDespawn);
-
 	UPROPERTY(EditAnywhere, Category = "AIController")
 		float SafeDistance;
 
 	UPROPERTY(EditAnywhere, Category = "AIController")
-		bool bIsSafeDistance;
-
-	UPROPERTY(EditAnywhere, Category = "AIController")
 		float BrakeCoeff;
+
+public:
+	UFUNCTION()
+		void DespawnAICar(AAICarPawn* CarToDespawn);
+
+
 };

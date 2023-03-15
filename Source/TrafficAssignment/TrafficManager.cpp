@@ -13,10 +13,11 @@ ATrafficManager::ATrafficManager()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	InitialPoolSize = 5;
-
 	SpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Spawn Position"));
 	RootComponent = SpawnPoint;
+
+	InitialPoolSize = 5;
+
 }
 
 // Called when the game starts or when spawned

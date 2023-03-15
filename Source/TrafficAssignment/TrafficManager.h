@@ -19,9 +19,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-
 private:
-
 
 	//
 	//	Respawn
@@ -29,7 +27,7 @@ private:
 	FTimerHandle SpawnerTimerHandle;
 
 	UPROPERTY(EditAnywhere, Category = "Respawn")
-		float AverageSpawnTime = 6.f;
+		float AverageSpawnTime = 7.f;
 
 	UPROPERTY(EditAnywhere, Category = "Respawn")
 		float Divergence = 2.f;
@@ -44,8 +42,7 @@ private:
 		void SetOnSpawnTimer(float AvrSpawnTime, float Div);
 
 
-
-	//Template Car
+	//Template Car to spawn
 	UPROPERTY(EditAnywhere, Category = "CarsPool")
 		TSubclassOf<class AAICarPawn> AICarClass;
 
@@ -66,12 +63,12 @@ private:
 	UFUNCTION()
 		void CreateAndAddCarToPool(UWorld* World, int32 Index, bool bShouldActiateOnInitialization);
 	
+	//
+	//	Spawning
+	//
 	UFUNCTION()
 		void OnSpawnCar();
 
 	UFUNCTION()
 		void OnDespawnCarAI(AAICarPawn* CarToDespawn);
-
-
-
 };

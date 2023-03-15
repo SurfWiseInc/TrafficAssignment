@@ -7,6 +7,7 @@
 #include "ChaosVehicleMovementComponent.h"
 #include "ChaosWheeledVehicleMovementComponent.h"
 #include "DisplayDebugHelpers.h"
+#include "DrawDebugHelpers.h"
 #include "Math/UnrealMathUtility.h"
 #include "CollisionShape.h"
 
@@ -19,8 +20,8 @@ void AAICarPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
-	RandThrottleValue = FMath::RandRange(0.5, 1.0);
-	ThrottleValue = RandThrottleValue;  //So that each car rides with different speed.
+	//So that each car rides with different speed.
+	ThrottleValue = FMath::RandRange(0.5, 1.0);
 
 	auto WheeledMovemendComp = Cast<UChaosWheeledVehicleMovementComponent>(VehicleMovementComponent);
 	WheeledMovemendComp->EnableMechanicalSim(true);
@@ -85,6 +86,13 @@ void AAICarPawn::ScanForObstacles()
 									FQuat::Identity,
 									ECC_GameTraceChannel1,
 									MyColSphere);
+
+
+		DrawDebugLine(World,
+			GetActorLocation(),
+			GetActorLocation() + GetActorForwardVector() * SafeDistance,
+			FColor::Red,
+			false);
 
 		if(isHit && (HitResult.Distance < SafeDistance) )
 		{
